@@ -1,0 +1,160 @@
+body {
+    /* box-sizing: border-box;
+    margin: 0;
+    font-size: 20px; */
+}
+
+.container {
+    border: 1px solid black;
+    height: 900px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    /* flex-flow: column nowrap; */
+    justify-content: flex-start;
+    align-items: flex-end;
+    /* align-content: flex-start; */
+}
+
+#between {
+    /* justify-content: space-between; */
+}
+
+#around {
+    /* justify-content: space-around; */
+}
+
+#evenly {
+    /* justify-content: space-evenly; */
+}
+
+.child {
+    border: 1px solid blue;
+    background-color: pink;
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+}
+
+#a {
+    order: 5;
+    /* flex-grow: 1; */
+    /* flex-shrink: 1;
+    flex-basis: 50%; */
+    /* flex: 1 1 100%; */
+    align-self: center;
+}
+#b {
+    order: 3;
+    flex-grow: 0;
+}
+#c {
+    order: 1;
+    flex-grow: 0;
+}
+#d {
+    order: 9;
+    flex-grow: 0;
+}
+#e {
+    order: 156;
+    flex-grow: 0;
+}
+#f {
+    order: 9;
+    flex-grow: 0;
+}
+#g {
+    order: 60;
+    flex-grow: 0;
+}
+
+
+/* Part 2 */
+
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-weight: bold;
+    text-align: center;
+}
+
+.wrapper > * {
+    padding: 10px;
+    flex-grow: 1;
+    flex-basis: 100%;
+}
+
+.header {
+    background: tomato;
+}
+
+.footer {
+    background: lightgreen;
+}
+
+.main {
+    text-align: left;
+    background: deepskyblue;
+}
+
+.aside-1 {
+    background: gold;
+}
+
+.aside-2 {
+    background: hotpink;
+}
+
+@media all and (min-width: 600px) {
+    .aside {
+           flex-grow: 1; 
+           flex-basis: 0;
+    }
+}
+
+@media all and (min-width: 800px) {
+    .main {
+        flex-basis: 0;
+        flex-grow: 3;
+        order: 2;
+    }
+    .aside-1 {
+        order: 1;
+    }
+    .aside-2 {
+        order: 3;
+    }
+    .footer {
+        order: 4;
+    }
+}
+
+/* Part 3 Inheritance */
+
+
+body {
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    margin: 20px;
+    /* text-align: center; */
+    font-family: 'Courier New', Courier, monospace;
+    /* font-size: 25px; */
+    line-height: 1.5;
+    border: 1px solid blue;
+}
+
+ul {
+    border: 1px solid black;
+}
+
+li {
+    border: inherit;
+    font-size: 25px;
+}
