@@ -1,0 +1,63 @@
+$primaryColor: #CD669A;
+$defaultSpacing: 16px;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+
+    & > * {
+        flex-basis: 100%;
+    }
+
+    &__logo-container {
+        display: flex;
+        justify-content: center;
+        padding: $defaultSpacing;
+    }
+
+    &__logo {
+        height: 120px;
+        width: auto;
+        max-width: 120px;
+    }
+
+    .nav {
+        ul {
+            display: flex;
+            font-size: 20px;
+        }
+        
+        &__item {
+            background-color: $primaryColor;
+            color: #FFFFFF;
+            flex-grow: 1;
+            text-align: center;
+            padding: $defaultSpacing;
+
+            &:not(:first-child) {
+                border-left: 3px solid #FFFFFF;
+            }
+
+            &:hover {
+                background-color: darken($primaryColor, 20%);
+            }
+
+            &--active {
+                background-color: darken($primaryColor, 10%);
+            }
+        }
+    }
+}
+

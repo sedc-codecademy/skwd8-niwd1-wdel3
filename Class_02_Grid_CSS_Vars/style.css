@@ -1,0 +1,111 @@
+:root {
+  --primary-color: yellow;
+  --default-spacing: 40px;
+  --default-font-family: Arial, Helvetica, sans-serif;
+  --default-width: 700px;
+}
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    border: 1px solid black;
+    height: 800px;
+    display: grid;
+    /* width: 500px; */
+    /* grid-template-columns: repeat(3, 1fr); 1fr 1fr 1fr */
+    /* grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 300px);
+
+    grid-template-areas: 
+    "header header header"
+    "aside main main"
+    "footer footer footer"; */
+
+    grid-template: 
+    "header header header" 200px
+    "aside main main" 200px
+    "footer footer footer" 200px
+    / 100px 100px 100px;
+
+    /* column-gap: 10px;
+    row-gap: 10px; */
+    gap: 10px 10px;
+    /* justify-items: start;
+    align-items: start; */
+    /* place-items: stretch stretch; */
+    /* justify-content: space-evenly; */
+    /* align-content: space-evenly; */
+    place-content: start space-evenly
+}
+
+.container > * {
+    padding: 10px;
+    font-size: 30px;
+    /* height: 100px;
+    width: 100px; */
+}
+
+.header {
+    background-color: brown;
+    /* grid-area: header; */
+    grid-column: 1 / span 3;
+    grid-row: 1;
+}
+
+.aside {
+    background-color: coral;
+    grid-area: aside;
+    /* grid-column: 1;
+    grid-row: 2; */
+}
+
+.aside2 {
+    background-color: indigo;
+    /* grid-area: aside; */
+    /* grid-column: 1;
+    grid-row: 3; */
+}
+
+.main {
+    background-color: darkkhaki;
+    grid-area: main;
+    /* grid-column: 2 / span 2;
+    grid-row: 2 / span 2;
+    justify-self: stretch;
+    align-self: stretch; */
+}
+
+.footer {
+    background-color: deepskyblue;
+    grid-area: footer;
+    /* grid-column: 1 / span 3;
+    grid-row: 4; */
+}
+
+/* VARIABLES */
+
+.main > h1 {
+    font-family: var(--default-font-family);
+    font-size: 30px;
+    color: var(--primary-color);
+    padding: var(--default-spacing);
+    position: var(--position-absolute);
+}
+
+.main > p {
+    font-family: var(--default-font-family);
+    font-size: 20px;
+    color: var(--primary-color);
+    padding: var(--default-spacing);
+}
+
+.aside2 > button {
+    font-family: var(--default-font-family);
+    color:  var(--primary-color);
+    padding: var(--default-spacing);
+}
+
