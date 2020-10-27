@@ -1,5 +1,11 @@
 $primaryColor: #CD669A;
 $defaultSpacing: 16px;
+$themeColours: (
+    "pink": #DC51AC,
+    "red": #D64651,
+    "orange": #E55937,
+);
+$ratingColorsList: #930a0a, #df2a01, #df6e01, #dfb101, #9be200;
 
 *,
 *::before,
@@ -11,6 +17,44 @@ $defaultSpacing: 16px;
 
 ul {
     list-style: none;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+
+    @each $themeColours, $i in $themeColours {
+        &.#{$themeColours} {
+            background-color: $i;
+        }
+    }
+}
+
+@mixin font($fontSize, $fontWeight) {
+    font-size: $fontSize;
+    font-weight: $fontWeight;
+}
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+        @media all and (max-width: 600px) {
+            @content;
+        }
+    }
+    @if $breakpoint == tab-portrait {
+        @media all and (max-width: 900px) {
+            @content;
+        }
+    }
+    @if $breakpoint == tab-landscape {
+        @media all and (max-width: 1200px) {
+            @content;
+        }
+    }
+    @if $breakpoint == desktop {
+        @media all and (max-width: 1800px) {
+            @content;
+        }
+    }
 }
 
 .header {
@@ -36,7 +80,7 @@ ul {
     .nav {
         ul {
             display: flex;
-            font-size: 20px;
+            @include font(16px, normal);
         }
         
         &__item {
@@ -57,6 +101,141 @@ ul {
             &--active {
                 background-color: darken($primaryColor, 10%);
             }
+        }
+    }
+}
+
+.main {
+    display: flex;
+
+    // @media all and (max-width: 600px) {
+    //     flex-wrap: wrap;
+    // }
+    @include respond(phone) {
+        flex-wrap: wrap;
+    }
+
+    .sidebar {
+        flex-basis: 700px;
+        @include font(16px, 400);
+        @include respond(phone) {
+            order: 1;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        &__item {
+            padding: $defaultSpacing;
+            text-align: center;
+            $counter: 1;
+
+            // &:nth-child(1) {
+            //     font-size: 12px;
+            // }
+
+            // &:nth-child(2) {
+            //     font-size: 15px;
+            // }
+
+            // &:nth-child(3) {
+            //     font-size: 18px;
+            // }
+
+            @while $counter <=3 {
+                &:nth-child(#{$counter}) {
+                    font-size: 12 + ($counter * 3) + px;
+                    $counter: $counter + 1;
+                }
+            }
+        }
+    }
+
+    .blog {
+        flex-grow: 1;
+        padding: $defaultSpacing;
+
+        .post {
+            padding: $defaultSpacing;
+
+            &__title {
+                @include font(30px, 600);
+                margin-bottom: $defaultSpacing;
+                text-shadow: 2px 2px 7px $primaryColor;
+            }
+
+            &__content {
+                line-height: 1.7;
+                text-align: justify;
+            }
+        }
+    }
+}
+
+.rating {
+
+    display: flex;
+
+
+    &__choice {
+        height: 40px;
+        width: 40px;
+        text-align: center;
+        border: 2px solid black;
+        border-radius: 50%;
+        padding: 10px;
+        cursor: pointer;
+        color: #FFFFFF;
+        margin-top: 10px;
+
+        @for $i from 1 through length($ratingColorsList) {
+            $bgColor: nth($ratingColorsList, $i);
+            &:nth-child(#{$i}) {
+                background-color: $bgColor;
+                border-color: $bgColor;
+                box-shadow: 3px 3px 3px $primaryColor;
+
+                &:hover {
+                    background-color: darken($bgColor, 5%);
+                    border-color: darken($bgColor, 5%);
+                    box-shadow: 5px 5px 5px $primaryColor;
+                    transform: translate(0, -3px);
+                }
+
+                &:active {
+                    box-shadow: 4px 4px 4px $primaryColor;
+                    transform: translate(0, -1.5px);
+                }
+            }
+        }
+
+        // &:nth-child(1) {
+        //     background-color: #930a0a;
+        // }
+
+        // &:nth-child(2) {
+        //     background-color: #df2a01;
+        // }
+
+        // &:nth-child(3) {
+        //     background-color: #df6e01;
+        // }
+
+        // &:nth-child(4) {
+        //     background-color: #dfb101;
+        // }
+
+        // &:nth-child(5) {
+        //     background-color: #9be200;
+        // }
+
+
+
+        &:not(:last-child) {
+            margin-right: 10px;
         }
     }
 }
