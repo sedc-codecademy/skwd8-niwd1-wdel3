@@ -1,0 +1,20 @@
+<app-header
+    [title]="appTitle"
+    (buttonClicked)="onButtonClicked()"
+    (ageAdded)="onAgeAdded($event)"
+></app-header>
+
+<input
+    type="text"
+    placeholder="Enter your name"
+    (keyup)="logInputValue($event)"
+/>
+
+<!-- [(ngModel)]="name" -->
+<!-- (keyup)="logInputValue($event)" -->
+<h3>{{ name }}</h3>
+
+<h2>{{ age }}</h2>
+
+<!-- <h4 [textContent]="name === 'ADV' ? 'fe' : 'be'"></h4> -->
+
