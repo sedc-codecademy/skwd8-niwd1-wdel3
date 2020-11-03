@@ -1,0 +1,21 @@
+[
+    {
+      "id": 1,
+      "name": "Ivo Kostovski",
+      "address": "Skopje",
+      "admin": true,
+      "email": "ivo@zoo.mk",
+      "password": "Password",
+      "age": 31
+    },
+    {
+      "id": 2,
+      "name": "Gjorgi Dimitrov",
+      "address": "Gevgelija",
+      "admin": false,
+      "email": "gjorgi@zoo.mk",
+      "password": "Password",
+      "age": 22
+    }
+  ]
+  
