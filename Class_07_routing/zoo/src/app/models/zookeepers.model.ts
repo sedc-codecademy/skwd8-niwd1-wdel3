@@ -1,5 +1,5 @@
 export interface Zookeeper {
-    id: number;
+    id: string;
     name: string;
     address: string;
     admin: boolean;

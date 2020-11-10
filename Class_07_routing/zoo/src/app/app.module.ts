@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ZooService } from './services/zoo.service';
+import { ZooRepoService } from './services/zoo-repo.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { ZooContainerComponent } from './components/zoo-container/zoo-container.component';
@@ -31,7 +31,7 @@ import { AddAnimalFormTempComponent } from './components/add-animal-form-temp/ad
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ZooService],
+  providers: [ZooRepoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

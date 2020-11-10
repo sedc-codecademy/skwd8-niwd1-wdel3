@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import { ZooService } from 'src/app/services/zoo.service';
 import { Animal } from '../../models/animal.model';
 import { Zookeeper } from '../../models/zookeepers.model';
-import { ZooService } from '../../services/zoo.service';
 
 @Component({
   selector: 'app-zoo-container',
@@ -12,23 +12,30 @@ import { ZooService } from '../../services/zoo.service';
 export class ZooContainerComponent implements OnInit, OnDestroy {
   @Input() showPage: string;
   animals: Animal[];
-  zookeepers: Observable<Zookeeper[]>;
+  zookeepers: Zookeeper[];
   subscription = new Subscription();
 
   constructor(private zooService: ZooService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.zooService.getAnimals();
+    this.zooService.getZookeepers();
+
     this.subscription.add(
-      this.zooService.getAnimals().subscribe(animals => {
-        this.animals = animals
+      this.zooService.animal.subscribe(animals => {
+        console.log('ZooContainerComponent', animals)
+        this.animals = animals;
       })
     )
 
-    this.zookeepers = this.zooService.getZookeepers();
+    this.subscription.add(
+      this.zooService.zookeepers.subscribe(zookeepers => {
+        this.zookeepers = zookeepers;
+      })
+    )
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 }

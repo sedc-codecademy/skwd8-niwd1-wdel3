@@ -1,8 +1,8 @@
 export interface Animal {
-    id: number,
+    id: string,
     name: string,
     country: string,
-    age: number,
+    age?: number,
     species: string,
     gender: string,
     imageUrl: string,

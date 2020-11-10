@@ -1,27 +1,38 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Animal } from '../models/animal.model';
-import { map } from 'rxjs/operators';
 import { Zookeeper } from '../models/zookeepers.model';
+import { ZooRepoService } from './zoo-repo.service';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class ZooService {
+    private _animals: BehaviorSubject<Animal[]> = new BehaviorSubject<Animal[]>([]);
+    private _zookeepers: BehaviorSubject<Zookeeper[]> = new BehaviorSubject<Zookeeper[]>([]);
 
-    constructor(private http: HttpClient) {}
-
-    getAnimals(): Observable<Animal[]> {
-        return this.http.get('./../../assets/data/animals.json').pipe(
-            map(res => (res as Animal[]))
-        );
+    get animal(): Observable<Animal[]> {
+        return this._animals.asObservable()
     }
 
-    getZookeepers(): Observable<Zookeeper[]> {
-        return this.http.get('./../../assets/data/zookeepers.json').pipe(
-            map(res => (res as Zookeeper[]))
-        );
+    get zookeepers(): Observable<Zookeeper[]> {
+        return this._zookeepers.asObservable()
+    }
+    
+    constructor(private zooRepoService: ZooRepoService) {}
+
+
+    getAnimals() {
+        this.zooRepoService.getAnimals().subscribe(animals => {
+            // console.log('zooRepoService.getAnimals()', animals)
+            this._animals.next(animals);
+        });
+    }
+    
+    getZookeepers() {
+        this.zooRepoService.getZookeepers().subscribe(zookeepers => {
+            this._zookeepers.next(zookeepers);
+        });
     }
 }

@@ -5,7 +5,7 @@
 </ng-container>
 <ng-container *ngIf="showPage === 'zookeepers-list'">
     <app-zookeepers-list
-        [zookeepers]="zookeepers | async"
+        [zookeepers]="zookeepers"
     ></app-zookeepers-list>
 </ng-container>
 <ng-container *ngIf="showPage === 'add-animal-form'">
