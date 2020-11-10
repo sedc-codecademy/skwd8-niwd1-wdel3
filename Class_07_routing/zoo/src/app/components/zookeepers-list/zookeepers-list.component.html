@@ -1,1 +1,5 @@
 <pre>{{ zookeepers | json }}</pre>
+
+<p *ngIf="!zookeepers?.length">
+    No zookeepers available!
+</p>

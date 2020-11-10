@@ -12,6 +12,7 @@ import { AnimalsListComponent } from './components/animals-list/animals-list.com
 import { ZookeepersListComponent } from './components/zookeepers-list/zookeepers-list.component';
 import { AddAnimalFormComponent } from './components/add-animal-form/add-animal-form.component';
 import { AddAnimalFormTempComponent } from './components/add-animal-form-temp/add-animal-form-temp.component';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AddAnimalFormTempComponent } from './components/add-animal-form-temp/ad
     AnimalsListComponent,
     ZookeepersListComponent,
     AddAnimalFormComponent,
-    AddAnimalFormTempComponent
+    AddAnimalFormTempComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -34,4 +36,4 @@ import { AddAnimalFormTempComponent } from './components/add-animal-form-temp/ad
   providers: [ZooRepoService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

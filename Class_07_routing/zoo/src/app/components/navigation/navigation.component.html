@@ -1,8 +1,8 @@
 <nav class="nav">
     <ul class="nav__list">
         <li class="nav__item">Home</li>
-        <li class="nav__item" (click)="navLinkClicked('animals-list')">Animals</li>
-        <li class="nav__item" (click)="navLinkClicked('zookeepers-list')">Zookeepers</li>
-        <li class="nav__item" (click)="navLinkClicked('add-animal-form')">Add Animal</li>
+        <li class="nav__item" routerLinkActive="nav__item--active" routerLink="/animals">Animals</li>
+        <li class="nav__item" routerLinkActive="nav__item--active" routerLink="/zookeepers">Zookeepers</li>
+        <li class="nav__item" routerLinkActive="nav__item--active" routerLink="add-animal">Add Animal</li>
     </ul>
 </nav>

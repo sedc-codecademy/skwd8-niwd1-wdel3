@@ -4,16 +4,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
 
-  @Output() navClicked: EventEmitter<string> = new EventEmitter<string>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  navLinkClicked(event) {
-    this.navClicked.emit(event)
-  }
 }

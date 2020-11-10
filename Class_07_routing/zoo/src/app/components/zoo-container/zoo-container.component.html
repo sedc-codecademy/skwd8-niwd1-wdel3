@@ -1,14 +1,1 @@
-<ng-container *ngIf="showPage === 'animals-list'">
-    <app-animals-list
-        [animals]="animals"
-    ></app-animals-list>
-</ng-container>
-<ng-container *ngIf="showPage === 'zookeepers-list'">
-    <app-zookeepers-list
-        [zookeepers]="zookeepers"
-    ></app-zookeepers-list>
-</ng-container>
-<ng-container *ngIf="showPage === 'add-animal-form'">
-    <app-add-animal-form></app-add-animal-form>
-    <!-- <app-add-animal-form-temp></app-add-animal-form-temp> -->
-</ng-container>
+<router-outlet></router-outlet>

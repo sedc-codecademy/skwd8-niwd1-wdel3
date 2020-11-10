@@ -6,9 +6,5 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 
 export class HeaderComponent {
-    @Output() navClicked: EventEmitter<string> = new EventEmitter<string>();
 
-    onNavClicked(event: string) {
-        this.navClicked.emit(event)
-    }
 }

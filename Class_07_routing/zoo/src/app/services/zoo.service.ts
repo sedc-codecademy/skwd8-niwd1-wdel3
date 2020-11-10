@@ -13,7 +13,7 @@ export class ZooService {
     private _animals: BehaviorSubject<Animal[]> = new BehaviorSubject<Animal[]>([]);
     private _zookeepers: BehaviorSubject<Zookeeper[]> = new BehaviorSubject<Zookeeper[]>([]);
 
-    get animal(): Observable<Animal[]> {
+    get animals(): Observable<Animal[]> {
         return this._animals.asObservable()
     }
 
