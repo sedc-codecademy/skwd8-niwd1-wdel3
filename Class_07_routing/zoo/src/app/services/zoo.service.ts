@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Animal } from '../models/animal.model';
 import { Zookeeper } from '../models/zookeepers.model';
 import { ZooRepoService } from './zoo-repo.service';
+import { v4 } from 'uuid';
 
 @Injectable({
     providedIn: 'root'
@@ -34,5 +35,12 @@ export class ZooService {
         this.zooRepoService.getZookeepers().subscribe(zookeepers => {
             this._zookeepers.next(zookeepers);
         });
+    }
+
+    addAnimal(animal: Animal) {
+        let animals = this._animals.getValue(); // allready existing animals
+        const newAnimal = {...animal, id: v4() } // adding id
+        animals = [...animals, newAnimal]; // creating new animal to the list
+        this._animals.next(animals); // adding and saving the new list of animals
     }
 }

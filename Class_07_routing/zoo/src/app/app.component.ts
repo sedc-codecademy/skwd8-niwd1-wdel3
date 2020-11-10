@@ -7,11 +7,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 
 export class AppComponent {
-  showPage: string = 'add-animal-form';
+  showPage: string = 'animals-list';
   constructor() {}
 
   onNavClicked(event: string) {
-    console.log('AppComponent', event);
     this.showPage = event;
   }
 }

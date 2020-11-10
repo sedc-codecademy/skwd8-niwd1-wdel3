@@ -11,8 +11,8 @@ import { Zookeeper } from '../../models/zookeepers.model';
 
 export class ZooContainerComponent implements OnInit, OnDestroy {
   @Input() showPage: string;
-  animals: Animal[];
-  zookeepers: Zookeeper[];
+  animals: Animal[] = [];
+  zookeepers: Zookeeper[] = [];
   subscription = new Subscription();
 
   constructor(private zooService: ZooService) { }

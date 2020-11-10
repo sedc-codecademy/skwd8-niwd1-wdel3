@@ -14,7 +14,6 @@ export class NavigationComponent implements OnInit {
   }
 
   navLinkClicked(event) {
-    console.log('NavigationComponent', event);
     this.navClicked.emit(event)
   }
 }
