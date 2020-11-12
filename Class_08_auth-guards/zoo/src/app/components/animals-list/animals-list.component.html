@@ -1,0 +1,15 @@
+<section class="card__container">
+    <article class="card" *ngFor="let animal of animals">
+        <div class="card__img-container">
+            <img class="card__img" [src]="animal.imageUrl" [alt]="animal.name">
+        </div>
+        <div class="card__info-container">
+            <h1 class="card__title">{{ animal.name }}</h1>
+            <p class="card__info">Species: {{ animal.species }}</p>
+            <p class="card__info">Country: {{ animal.country }}</p>
+        </div>
+    </article>
+</section>
+<p *ngIf="!animals?.length">
+    No animals available
+</p>
