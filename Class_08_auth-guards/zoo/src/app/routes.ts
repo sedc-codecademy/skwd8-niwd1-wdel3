@@ -1,29 +1,60 @@
 import { Routes } from '@angular/router';
+import { AuthComponent } from './auth/components/auth/auth.component';
 import { AddAnimalFormComponent } from './components/add-animal-form/add-animal-form.component';
 import { AnimalsListComponent } from './components/animals-list/animals-list.component';
+import { ZooContainerComponent } from './components/zoo-container/zoo-container.component';
 import { ZookeepersListComponent } from './components/zookeepers-list/zookeepers-list.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { OnlyLoggedInUsersGuard } from './auth/services/only-logged-in-users.guard';
+import { NotAllowedComponent } from './shared/components/not-allowed/not-allowed.component';
+import { OnlyAdmins } from './auth/services/only-admins.guard';
+import { AnimalDetailsComponent } from './components/animal-details/animal-details.component';
 
 export const routes: Routes = [
     {
-        path: 'animals',
-        component: AnimalsListComponent,
+        path: 'zoo',
+        component: ZooContainerComponent,
+        children: [
+            {
+                path: 'animals',
+                component: AnimalsListComponent,
+            },
+            {
+                path: 'animals/:id',
+                component: AnimalDetailsComponent,
+            },
+            {
+                path: 'zookeepers',
+                component: ZookeepersListComponent,
+                canActivate: [OnlyLoggedInUsersGuard]
+            },
+            {
+                path: 'add-animal',
+                component: AddAnimalFormComponent,
+                canActivate: [OnlyAdmins]
+            },
+            {
+                path: '',
+                redirectTo: '/zoo/animals',
+                pathMatch: 'full'
+            },
+        ]
     },
     {
-        path: 'zookeepers',
-        component: ZookeepersListComponent
-    },
-    {
-        path: 'add-animal',
-        component: AddAnimalFormComponent
+        path: 'login',
+        component: AuthComponent
     },
     {
         path: 'not-found',
         component: NotFoundComponent
     },
     {
+        path: 'not-allowed',
+        component: NotAllowedComponent
+    },
+    {
         path: '',
-        redirectTo: '/animals',
+        redirectTo: '/zoo/animals',
         pathMatch: 'full'
     },
     {

@@ -13,6 +13,10 @@ import { ZookeepersListComponent } from './components/zookeepers-list/zookeepers
 import { AddAnimalFormComponent } from './components/add-animal-form/add-animal-form.component';
 import { AddAnimalFormTempComponent } from './components/add-animal-form-temp/add-animal-form-temp.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { AuthModule } from './auth/auth.module';
+import {AuthComponent} from './auth/components/auth/auth.component'
+import { NotAllowedComponent } from './shared/components/not-allowed/not-allowed.component';
+import { AnimalDetailsComponent } from './components/animal-details/animal-details.component'
 
 @NgModule({
   declarations: [
@@ -24,14 +28,18 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
     ZookeepersListComponent,
     AddAnimalFormComponent,
     AddAnimalFormTempComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    NotAllowedComponent,
+    AuthComponent,
+    AnimalDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthModule
   ],
   providers: [ZooRepoService],
   bootstrap: [AppComponent]

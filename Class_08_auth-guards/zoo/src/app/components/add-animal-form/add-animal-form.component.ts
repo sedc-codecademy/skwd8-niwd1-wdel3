@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ZooService } from 'src/app/services/zoo.service';
 
 @Component({
@@ -29,7 +30,7 @@ export class AddAnimalFormComponent implements OnInit {
     return this.animalForm.get('gender').invalid && (this.animalForm.get('gender').touched || this.animalForm.get('gender').dirty);
   }
 
-  constructor(private fb: FormBuilder, private zooService: ZooService) {}
+  constructor(private fb: FormBuilder, private zooService: ZooService, private router: Router) {}
 
   ngOnInit() {
     this.animalForm = this.fb.group({
@@ -42,7 +43,8 @@ export class AddAnimalFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.animalForm.value);
     this.zooService.addAnimal(this.animalForm.value);
+    // this.router.navigate(['/animals'])
+    this.router.navigateByUrl('/zoo/animals');
   }
 }

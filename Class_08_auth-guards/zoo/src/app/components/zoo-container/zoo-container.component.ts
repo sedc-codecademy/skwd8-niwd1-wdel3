@@ -1,4 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { ZooService } from 'src/app/services/zoo.service';
 
 @Component({
@@ -8,11 +9,11 @@ import { ZooService } from 'src/app/services/zoo.service';
 
 export class ZooContainerComponent implements OnInit {
 
-  constructor(private zooService: ZooService) { }
+  constructor(private zooService: ZooService, private authService: AuthService) { }
 
   ngOnInit() {
     this.zooService.getAnimals();
-    this.zooService.getZookeepers();
+    this.authService.isAuthenticated.subscribe(a => console.log('isAuthenticated',a))
   }
 
 }
