@@ -26,12 +26,12 @@ export const routes: Routes = [
             {
                 path: 'zookeepers',
                 component: ZookeepersListComponent,
-                canActivate: [OnlyLoggedInUsersGuard]
+                // canActivate: [OnlyLoggedInUsersGuard]
             },
             {
                 path: 'add-animal',
                 component: AddAnimalFormComponent,
-                canActivate: [OnlyAdmins]
+                // canActivate: [OnlyAdmins]
             },
             {
                 path: '',

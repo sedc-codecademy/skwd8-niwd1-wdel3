@@ -13,7 +13,6 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     this.authService.isAuthenticated.subscribe(isAuth => {
-      console.log('navigation', isAuth)
       this.isAuth = isAuth
     })
   }

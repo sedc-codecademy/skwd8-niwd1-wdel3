@@ -13,7 +13,7 @@ export class ZooContainerComponent implements OnInit {
 
   ngOnInit() {
     this.zooService.getAnimals();
-    this.authService.isAuthenticated.subscribe(a => console.log('isAuthenticated',a))
+    this.authService.isAuthenticated.subscribe(a => a)
   }
 
 }
