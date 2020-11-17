@@ -44,8 +44,16 @@ export class ZookeeperDetailsComponent implements OnInit, OnDestroy {
 
   onAddAnimal(animalId: string) {
     const animal = this.allAnimals.find(a => a.id === animalId);
-    this.assignedAnimals.push(animal);
+    // this.assignedAnimals.push(animal);
+    this.assignedAnimals = [...this.assignedAnimals, animal];
     this.allAnimals = this.allAnimals.filter(a => a.id !== animal.id)
+  }
+
+  onRemoveAnimal(animalId: string) {
+    const animal = this.assignedAnimals.find(a => a.id === animalId);
+    // this.allAnimals.push(animal);
+    this.allAnimals = [...this.allAnimals, animal]
+    this.assignedAnimals = this.assignedAnimals.filter(a => a.id !== animal.id)
   }
 
   ngOnDestroy() {
