@@ -1,3 +1,5 @@
+import { Animal } from './animal.model';
+
 export interface Zookeeper {
     id: string;
     name: string;
@@ -6,4 +8,5 @@ export interface Zookeeper {
     email: string;
     password: string;
     age: number;
+    assignedAnimals: Animal[];
 }

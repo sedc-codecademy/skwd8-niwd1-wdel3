@@ -16,7 +16,9 @@ import { NotFoundComponent } from './shared/components/not-found/not-found.compo
 import { AuthModule } from './auth/auth.module';
 import {AuthComponent} from './auth/components/auth/auth.component'
 import { NotAllowedComponent } from './shared/components/not-allowed/not-allowed.component';
-import { AnimalDetailsComponent } from './components/animal-details/animal-details.component'
+import { AnimalDetailsComponent } from './components/animal-details/animal-details.component';
+import { ZookeeperDetailsComponent } from './components/zookeeper-details/zookeeper-details.component';
+import { AssignAnimalsFormComponent } from './components/assign-animals-form/assign-animals-form.component'
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { AnimalDetailsComponent } from './components/animal-details/animal-detai
     NotFoundComponent,
     NotAllowedComponent,
     AuthComponent,
-    AnimalDetailsComponent
+    AnimalDetailsComponent,
+    ZookeeperDetailsComponent,
+    AssignAnimalsFormComponent
   ],
   imports: [
     BrowserModule,

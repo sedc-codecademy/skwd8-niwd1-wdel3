@@ -9,6 +9,7 @@ import { OnlyLoggedInUsersGuard } from './auth/services/only-logged-in-users.gua
 import { NotAllowedComponent } from './shared/components/not-allowed/not-allowed.component';
 import { OnlyAdmins } from './auth/services/only-admins.guard';
 import { AnimalDetailsComponent } from './components/animal-details/animal-details.component';
+import { ZookeeperDetailsComponent } from './components/zookeeper-details/zookeeper-details.component';
 
 export const routes: Routes = [
     {
@@ -26,6 +27,11 @@ export const routes: Routes = [
             {
                 path: 'zookeepers',
                 component: ZookeepersListComponent,
+                // canActivate: [OnlyLoggedInUsersGuard]
+            },
+            {
+                path: 'zookeepers/:id',
+                component: ZookeeperDetailsComponent,
                 // canActivate: [OnlyLoggedInUsersGuard]
             },
             {

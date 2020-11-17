@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscriber, Subscription } from 'rxjs';
 import { find, map, mergeMap } from 'rxjs/operators';
 import { Animal } from 'src/app/models/animal.model';
 import { ZooService } from 'src/app/services/zoo.service';
@@ -12,21 +13,22 @@ export class AnimalDetailsComponent implements OnInit {
 
   animalId: string = '';
   animal: Animal;
+  subscription = new Subscription();
 
   constructor(private route: ActivatedRoute, private zooService: ZooService) { }
 
   ngOnInit() {
-    this.route.paramMap.pipe(
-      mergeMap((params) => {
-        this.animalId = params.get('id');
-        return this.zooService.animals;
-      }),
-      map((animals) =>  animals.find(a => a.id === this.animalId))
-    ).subscribe(animal => {
-      console.log(animal)
-      this.animal = animal;
-    })
-    
+    this.subscription.add(
+      this.route.paramMap.pipe(
+        mergeMap((params) => {
+          this.animalId = params.get('id');
+          return this.zooService.animals;
+        }),
+        map((animals) => animals.find(a => a.id === this.animalId))
+      ).subscribe(animal => {
+        this.animal = animal;
+      })
+    );
     
     // BAD PRACTISE
     // .subscribe(params => {
@@ -38,6 +40,10 @@ export class AnimalDetailsComponent implements OnInit {
     //     console.log(this.animal)
     //   })
     // })
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
