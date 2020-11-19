@@ -16,8 +16,8 @@
             <h1 class="card__title" #animalTitle>{{ animal.name }}</h1>
             <p class="card__info">Species: {{ animal.species }}</p>
             <p class="card__info">Country: {{ animal.country }}</p>
-            <button type="button" [routerLink]="['/zoo/animals', animal.id]">View more</button>
-            <button type="button" [routerLink]="['/zoo/add-animal', animal.id]">Edit</button>
+            <button class="button" type="button" [routerLink]="['/zoo/animals', animal.id]">View more</button>
+            <button class="edit-button" type="button" [routerLink]="['/zoo/add-animal', animal.id]">Edit</button>
              <!-- routerLink="/zoo/animals/{{animal.id}}" -->
         </div>
     </article>

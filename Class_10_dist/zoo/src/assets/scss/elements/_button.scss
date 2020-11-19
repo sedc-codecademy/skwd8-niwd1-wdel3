@@ -5,3 +5,13 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+// %button-props {
+//     margin: 20px;
+// }
+
+.edit-button {
+    @extend .button;
+    // @extend %button-props;
+    color: $primaryColor;
+}

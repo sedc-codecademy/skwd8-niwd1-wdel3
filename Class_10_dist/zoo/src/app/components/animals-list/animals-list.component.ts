@@ -32,27 +32,27 @@ export class AnimalsListComponent implements OnInit, OnDestroy, AfterViewInit, O
   }
 
   ngOnChanges() {
-    console.log('OnChanges')
+    // console.log('OnChanges')
   }
 
   ngDoCheck() {
-    console.log('DoCheck')
+    // console.log('DoCheck')
   }
 
   ngAfterContentInit() {
-    console.log('AfterContentInit')
+    // console.log('AfterContentInit')
   }
 
   ngAfterContentChecked() {
-    console.log('AfterContentChecked')
+    // console.log('AfterContentChecked')
   }
 
   ngAfterViewChecked() {
-    console.log('AfterViewChecked')
+    // console.log('AfterViewChecked')
   }
 
   ngAfterViewInit() {
-    console.log('AfterViewInit')
+    // console.log('AfterViewInit')
     console.log(this.searchInput)
     this.searchInput.nativeElement.focus();
   }
@@ -67,7 +67,7 @@ export class AnimalsListComponent implements OnInit, OnDestroy, AfterViewInit, O
   }
 
   ngOnDestroy() {
-    console.log('OnDestroy')
+    // console.log('OnDestroy')
     this.subscription.unsubscribe()
   }
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 import { Animal } from 'src/app/models/animal.model';
 import { ZooService } from 'src/app/services/zoo.service';
-import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-add-animal-form',
@@ -15,6 +15,7 @@ export class AddAnimalFormComponent implements OnInit {
   animalId: string = '';
   animal: Animal;
   isInEditMode: boolean = false;
+  subscription = new Subscription();
 
   get nameValid() {
     return this.animalForm.get('name').invalid && (this.animalForm.get('name').touched || this.animalForm.get('name').dirty);
@@ -53,34 +54,43 @@ export class AddAnimalFormComponent implements OnInit {
       gender: ['', Validators.required],
     })
 
-    this.route.paramMap.pipe(
-      mergeMap(params => {
-        this.animalId = params.get('id');
-        return this.zooService.animals
-      }),
-      map(animals => animals.find(a => a.id === this.animalId))
+    this.subscription.add(
+      this.route.paramMap.pipe(
+        mergeMap(params => {
+          this.animalId = params.get('id');
+          return this.zooService.animals
+        }),
+        map(animals => animals.find(a => a.id === this.animalId))
+      )
+      .subscribe(animal => {
+        if (animal) {
+          this.isInEditMode = true;
+          this.animal = animal;
+          this.animalForm.patchValue(animal);
+          // this.animalForm.markAsTouched();
+          // this.animalForm.markAllAsTouched();
+          // this.animalForm.markAsDirty();
+          // this.animalForm.get('name').markAsTouched();
+          this.animalForm.updateValueAndValidity();
+          console.log(animal)
+        }
+      })
     )
-    .subscribe(animal => {
-      if (animal) {
-        this.isInEditMode = true;
-        this.animal = animal;
-        this.animalForm.patchValue(animal);
-        // this.animalForm.markAsTouched();
-        this.animalForm.markAllAsTouched();
-        this.animalForm.markAsDirty();
-        // this.animalForm.get('name').markAsTouched();
-        this.animalForm.updateValueAndValidity();
-        console.log(animal)
-      }
-    
-    })
   }
 
   onSubmit() {
-    debugger
+    const animal: Animal = {
+      ...this.animal,
+      ...this.animalForm.value
+    }
+
     this.isInEditMode
-    ? this.zooService.editAnimal(this.animalForm.value)
-    : this.zooService.addAnimal(this.animalForm.value);
+    ? this.zooService.editAnimal(animal)
+    : this.zooService.addAnimal(animal);
     this.router.navigateByUrl('/zoo/animals');
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
