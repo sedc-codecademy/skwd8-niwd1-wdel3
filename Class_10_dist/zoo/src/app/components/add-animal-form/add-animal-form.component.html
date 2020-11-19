@@ -4,34 +4,39 @@
         class="form__input"
         placeholder="Name"
         formControlName="name"
-        [ngClass]="{ required: nameValid }"
+        inputRequired
+        [invalid]="nameValid"
     />
     <input
         type="text"
         class="form__input"
         placeholder="Species"
         formControlName="species"
-        [ngClass]="{ required: speciesValid }"
+        inputRequired
+        [invalid]="speciesValid"
     />
     <input
         type="text"
         class="form__input"
         placeholder="Country"
         formControlName="country"
-        [ngClass]="{ required: countryValid }"
+        inputRequired
+        [invalid]="countryValid"
     />
     <input
         type="text"
         class="form__input"
         placeholder="Image URL"
         formControlName="imageUrl"
-        [ngClass]="{ required: imageUrlValid }"
+        inputRequired
+        [invalid]="imageUrlValid"
     />
 
     <select
         class="form__input"
         formControlName="gender"
-        [ngClass]="{ required: genderValid }"
+        inputRequired
+        [invalid]="genderValid"
     >
         <option value="Male">Male</option>
         <option value="Female">Female</option>
@@ -41,6 +46,6 @@
         type="submit"
         class="button"
         [disabled]="animalForm.invalid"
-        >Add animal
+        >{{isInEditMode ? 'Edit' : 'Add'}} animal
     </button>
 </form>

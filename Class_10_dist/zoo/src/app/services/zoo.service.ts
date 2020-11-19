@@ -43,4 +43,11 @@ export class ZooService {
         animals = [...animals, newAnimal]; // creating new animal to the list
         this._animals.next(animals); // adding and saving the new list of animals
     }
+
+    editAnimal(animal: Animal) {
+        let animals = this._animals.getValue();
+        let index = animals.findIndex(a => a.id === animal.id);
+        animals[index] = animal;
+        this._animals.next(animals);
+    }
 }

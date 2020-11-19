@@ -40,6 +40,11 @@ export const routes: Routes = [
                 // canActivate: [OnlyAdmins]
             },
             {
+                path: 'add-animal/:id',
+                component: AddAnimalFormComponent,
+                // canActivate: [OnlyAdmins]
+            },
+            {
                 path: '',
                 redirectTo: '/zoo/animals',
                 pathMatch: 'full'

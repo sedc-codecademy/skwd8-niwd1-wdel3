@@ -20,6 +20,7 @@ import { AnimalDetailsComponent } from './components/animal-details/animal-detai
 import { ZookeeperDetailsComponent } from './components/zookeeper-details/zookeeper-details.component';
 import { AssignAnimalsFormComponent } from './components/assign-animals-form/assign-animals-form.component'
 import { AnimalsToListPipe } from './shared/pipes/animals-to-list.pipe';
+import { InputRequiredDirective } from './shared/directives/input-required.directive';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AnimalsToListPipe } from './shared/pipes/animals-to-list.pipe';
     AnimalDetailsComponent,
     ZookeeperDetailsComponent,
     AssignAnimalsFormComponent,
-    AnimalsToListPipe
+    AnimalsToListPipe,
+    InputRequiredDirective
   ],
   imports: [
     BrowserModule,
