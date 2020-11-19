@@ -19,6 +19,7 @@ import { NotAllowedComponent } from './shared/components/not-allowed/not-allowed
 import { AnimalDetailsComponent } from './components/animal-details/animal-details.component';
 import { ZookeeperDetailsComponent } from './components/zookeeper-details/zookeeper-details.component';
 import { AssignAnimalsFormComponent } from './components/assign-animals-form/assign-animals-form.component'
+import { AnimalsToListPipe } from './shared/pipes/animals-to-list.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AssignAnimalsFormComponent } from './components/assign-animals-form/ass
     AuthComponent,
     AnimalDetailsComponent,
     ZookeeperDetailsComponent,
-    AssignAnimalsFormComponent
+    AssignAnimalsFormComponent,
+    AnimalsToListPipe
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,7 @@
                 <td>{{zookeeper?.address}}</td>
                 <td>{{zookeeper?.age}}</td>
                 <td>{{zookeeper?.admin ? 'Yes' : 'No'}}</td>
-                <td>{{zookeeper?.assignedAnimals}}</td>
+                <td>{{ zookeeper?.assignedAnimals | animalsToList }}</td>
             </tr>
         </tbody>
     </table>

@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { Animal } from 'src/app/models/animal.model';
 import { Zookeeper } from 'src/app/models/zookeepers.model';
 import { ZooService } from 'src/app/services/zoo.service';
+import { AssignAnimalsFormComponent } from '../assign-animals-form/assign-animals-form.component';
 
 @Component({
   selector: 'app-zookeeper-details',
@@ -12,9 +13,11 @@ import { ZooService } from 'src/app/services/zoo.service';
 })
 export class ZookeeperDetailsComponent implements OnInit, OnDestroy {
 
+  @ViewChild('address') address: ElementRef;
+  @ViewChild(AssignAnimalsFormComponent, { static: false }) assignAnimalsFormComp: AssignAnimalsFormComponent;
+
   zookeeper: Zookeeper;
   allAnimals: Animal[] = [];
-  assignedAnimals: Animal[] = [];
   zookeeperId: string = '';
   subscription = new Subscription();
 
@@ -36,24 +39,27 @@ export class ZookeeperDetailsComponent implements OnInit, OnDestroy {
       .subscribe((zookeeper) => {
         if (zookeeper) {
           this.zookeeper = zookeeper;
-          this.assignedAnimals = zookeeper.assignedAnimals;
         }
       })
     )
   }
 
+  ngAfterViewInit() {
+    // this.assignAnimalsFormComp.allAnimals;
+  }
+
   onAddAnimal(animalId: string) {
     const animal = this.allAnimals.find(a => a.id === animalId);
     // this.assignedAnimals.push(animal);
-    this.assignedAnimals = [...this.assignedAnimals, animal];
+    this.zookeeper.assignedAnimals = [...this.zookeeper.assignedAnimals, animal];
     this.allAnimals = this.allAnimals.filter(a => a.id !== animal.id)
   }
 
   onRemoveAnimal(animalId: string) {
-    const animal = this.assignedAnimals.find(a => a.id === animalId);
+    const animal = this.zookeeper.assignedAnimals.find(a => a.id === animalId);
     // this.allAnimals.push(animal);
     this.allAnimals = [...this.allAnimals, animal]
-    this.assignedAnimals = this.assignedAnimals.filter(a => a.id !== animal.id)
+    this.zookeeper.assignedAnimals = this.zookeeper.assignedAnimals.filter(a => a.id !== animal.id)
   }
 
   ngOnDestroy() {
